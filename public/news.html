@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Coiny&family=Roboto+Flex:opsz,wght@8..144,400;8..144,800&family=Sono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="../src/news.css" rel="stylesheet" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <img src="./logo.png" height="65" width="65" />
+          <h1>Today I learned</h1>
+        </div>
+        <button class="btn btn-large btn-open" id="open">share a fact</button>
+      </header>
+
+      <form class="form hidden" id="factform">
+        <input placeholder="Share a fact with words..." />
+        <span>200</span>
+        <input placeholder="Trust worthy source...." />
+        <select class="options">
+          <option>choose category:</option>
+          <option>technology</option>
+          <option>science</option>
+        </select>
+        <button class="btn btn-large">post</button>
+      </form>
+<main >
+      <div class="partition">
+        <aside class="side-buttons">
+          <ul class="side-buttons">
+            <li><button class="btn btn-all">All</button></li>
+            <li>
+              <button
+                class="btn btn-seperate"
+                style="background-color: #3b82f6"
+              >
+                technology
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-seperate"
+                style="background-color: #16a34a"
+              >
+                science
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-seperate"
+                style="background-color: #eab308"
+              >
+                society
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <section class="factslist">
+          <ul class="factslist">
+            <li class="fact">
+              <p>
+                React is being developed by Meta (formerly facebook)
+                <a
+                  class="link"
+                  href="https://opensource.fb.com/"
+                  target="_blank"
+                  >(source)</a
+                >
+              </p>
+              <span  style="background-color: #3b82f6; font-weight: 200"
+                >#technology#</span
+              >
+              <div class="vote">
+                <button class="vote-button">👍 <strong>24</strong></button>
+                <button class="vote-button">🤯 <strong>9</strong></button>
+                <button class="vote-button">⛔️ <strong>4</strong></button>
+              </div>
+            </li>
+            <li class="fact">
+              <p>
+                Millennial dads spend 3 times as much time with their kids than
+                their fathers spent with them. In 1982, 43% of fathers had never
+                changed a diaper. Today, that number is down to 3%"
+
+                <a
+                  class="link"
+                  href="https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids"
+                  target="_blank"
+                >
+                  (source)
+                </a>
+              </p>
+              <span
+                class="category"
+                style="background-color: #eab308; font-weight: 200"
+                >#society#</span
+              >
+              <div class="vote">
+                <button class="vote-button">👍 24</button>
+                <button class="vote-button">🤯 9</button>
+                <button class="vote-button">⛔️ 4</button>
+              </div>
+            </li>
+
+            <li class="fact">
+              <p>
+                Lisbon is the capital of Portugal
+                <a
+                  class="link"
+                  href="https://en.wikipedia.org/wiki/Lisbon"
+                  target="_blank"
+                  >(source)
+                </a>
+              </p>
+              <span style="background-color: #eab308; font-weight: 200"
+                >#society#</span
+              >
+              <div class="vote">
+                <button class="vote-button">👍 <strong>24</strong></button>
+                <button class="vote-button">🤯 <strong>9</strong></button>
+                <button class="vote-button">⛔️ <strong>4</strong></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      </div>
+    </div>
+  
+    <script src="news.js"></script>
+  </body>
+</html>
