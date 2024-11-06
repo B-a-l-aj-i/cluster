@@ -69,7 +69,7 @@ function App() {
     window.addEventListener('resize', updateScreenSize);
     return () => window.removeEventListener('resize', updateScreenSize);
   }, []);
-  
+
   const toggleMenu = () => {  
       setIsOpen(!isOpen);  
   };  
@@ -99,9 +99,11 @@ function App() {
         <div className="logo">
           
           <p className="h2"> 
-          <img style={{cursor:"pointer"}} className="logopng"
-           href="http:" target="_self" alt="cummunity" 
-           src="./logo.png" height="40" width="40" /> CLUSTER
+          <a href="https://balajiscluster.netlify.app" target="_self">
+          <img  style={{cursor:"pointer"}} className="logopng"
+             alt="clusterPng" 
+           src="./logo.png" height="40" width="40" />
+          </a> CLUSTER
            </p>
         </div>
            

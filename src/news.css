@@ -87,17 +87,19 @@ body {
   border-radius: 30px;
   display: flex;
   justify-content: space-evenly;
+  gap: 20px;
 }
 
 .form input, .form select, .form select option {
+  min-width: 100px;
   outline:none;
   border: 2px dotted black ;
   padding: 10px;
   background-color: #E0E5F2;
   border-radius: 20px;
   color: #4B4B4B;
-  /* width: 250px; */
   font-weight: 900;
+  display: inline-block;
 }
 
 header {
@@ -278,9 +280,7 @@ header {
 }
 
 @media (max-width:900px) {
-  .form {
-    flex-wrap: wrap;
-  }
+  
   .partition {
     display: grid;
     grid-template-columns: 1fr;
@@ -293,11 +293,15 @@ header {
 }
 
 @media (max-width:600px) {
+  .form{
+    flex-direction: column;
+  }
   .h2{
     font-size: 27px;
   }
   .fact{
-    flex-wrap: wrap;
+
+    flex-direction: row;
   }
   .btn-large{
     font-size: 15px;
