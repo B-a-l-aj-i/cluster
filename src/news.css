@@ -300,7 +300,7 @@ header {
     font-size: 27px;
   }
   .fact{
-
+    flex-wrap:wrap;
     flex-direction: row;
   }
   .btn-large{
