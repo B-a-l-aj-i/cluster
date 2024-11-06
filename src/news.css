@@ -64,13 +64,12 @@ span {
 }
 
 .h2 {
-  text-align: center;
+  /* text-align: center; */
   font-size:2.1rem;
   text-transform: uppercase;
   font-family: "coiny", sans-serif;
   color: #4B4B4B;
   margin: 0px;
-  text-align: center;
 }
 
 body {
@@ -272,24 +271,31 @@ header {
     width: 0;
   }
 }
-
+.ham{
+  max-width: 65px;
+  display:none;
+  margin-bottom: 0;
+}
 
 @media (max-width:900px) {
   .form {
     flex-wrap: wrap;
-  }
-  .side-buttons{
-    display: none;
   }
   .partition {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+  .ham{
+    margin-right: 0;
+    display: inline;
+  }
 }
 
 @media (max-width:600px) {
+  .h2{
+    font-size: 27px;
+  }
   .fact{
     flex-wrap: wrap;
   }

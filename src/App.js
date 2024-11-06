@@ -52,10 +52,27 @@ const CATEGORIES = [
 
 
 function App() {
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 900);
+
   const [allfacts, setallfacts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isOpen, setIsOpen] = useState(false);  
 
+
+  const updateScreenSize = () => {
+    setIsDesktop(window.innerWidth >= 900);
+  };
+
+  useEffect(() => {
+    // Event listener to update screen size on resize
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+  
+  const toggleMenu = () => {  
+      setIsOpen(!isOpen);  
+  };  
 
   useEffect(function () {
     async function getfacts() {
@@ -81,8 +98,13 @@ function App() {
       <header>
         <div className="logo">
           
-          <p className="h2"> <img style={{cursor:"pointer"}} className="logopng" href="http:" target="_self" alt="cummunity" src="./logo.png" height="40" width="40" /> CLUSTER</p>
+          <p className="h2"> 
+          <img style={{cursor:"pointer"}} className="logopng"
+           href="http:" target="_self" alt="cummunity" 
+           src="./logo.png" height="40" width="40" /> CLUSTER
+           </p>
         </div>
+           
         <button
           className="btn btn-large btn-open"
           id="open"
@@ -90,13 +112,18 @@ function App() {
         >
           {showForm ? "close" : "POST"}
         </button>
+        <button onClick={toggleMenu} className="ham btn btn-all">🪬</button>
+
       </header>
       {showForm ? (
         <Factform setShowForm={setShowForm} setallfacts={setallfacts} />
       ) : null}
       <div className="partition">
-        <Category setSelectedCategory={setSelectedCategory} />
+       {
+        isOpen && ( <Category setSelectedCategory={setSelectedCategory} />)
+       }
         {/* //allfacts is array of objecs */}
+        {isDesktop  && <Category setSelectedCategory={setSelectedCategory} />}
         <Fact allfacts={filteredFacts} />
       </div>
     </>
