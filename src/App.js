@@ -231,7 +231,7 @@ function Fact({ allfacts }) {
       <br></br>
       <ul key={allfacts.id} className="factslist">
         {allfacts.map((allfact) => (
-          <Factlist key={allfact.id} allfact={allfact}  />
+          <Factlist key={allfact.id} allfact={allfact}/>
         ))}
       </ul>
       
