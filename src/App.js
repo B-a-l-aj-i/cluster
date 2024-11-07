@@ -52,6 +52,7 @@ const CATEGORIES = [
 
 
 function App() {
+
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 900);
 
   const [allfacts, setallfacts] = useState([]);
@@ -160,7 +161,7 @@ function Factform({ setallfacts, setShowForm }) {
       const { data: newFact, error } = await supabase
         .from("info")
         .insert([{text,source, category:cate }])
-        .select();
+        .select("*");
         console.log(error);
       if (newFact && newFact.length > 0) {
         setallfacts((facts) => [{ id: newFact[0].id, ...newFact[0] },...facts]);
@@ -180,7 +181,7 @@ function Factform({ setallfacts, setShowForm }) {
         placeholder="Share a fact with words..."
         value={text}
         onChange={(e) =>{
-          console.log(e.target.value);
+          // console.log(e.target.value);
           setText(e.target.value);
         }}
       />
@@ -208,25 +209,128 @@ function Factform({ setallfacts, setShowForm }) {
 }
 
 /********************************facts***************************/
-
+let nm=""
 function Fact({ allfacts }) {
+  const [name, setName] = useState(""); // State to store user input
+
+  const handlePrompt = () => {
+    const userName = window.prompt("Enter your name");
+    if (userName) {
+      setName(userName); // Store the name in state
+    }
+  };
+  nm=name;
   return (
     <section>
-     <center> <p className="count">There are {allfacts.length} facts here,add your own</p> </center>
+     <center> <p className="count">There are {allfacts.length} facts here,add your own
+     {/* <div> */}
+      <button style={{fontSize:"1rem",padding:"0.5rem"}} className="btn-large" onClick={handlePrompt}>Click!</button>
+      {name &&  <h1>Hello, {name}!</h1>} {/* Display the entered name */}
+    {/* </div> */}
+    </p> </center>
       <br></br>
       <ul key={allfacts.id} className="factslist">
         {allfacts.map((allfact) => (
           <Factlist key={allfact.id} allfact={allfact}  />
         ))}
       </ul>
+      
     </section>
   );
 }
 
 function Factlist({ allfact }) {
+  // Get :initial like and dislike statuses from localStorage (if available)
+
+  
+  const [hasLiked, setHasLiked] = useState(() => {
+    const storedLike = localStorage.getItem(`liked-${allfact.id}`);
+    return storedLike === 'true'; // Return true or false based on localStorage value
+  });
+
+  const [hasDisliked, setHasDisliked] = useState(() => {
+    const storedDislike = localStorage.getItem(`disliked-${allfact.id}`);
+    return storedDislike === 'true'; // Return true or false based on localStorage value
+  });
+
+  // State for tracking current like/dislike counts
+  const [like, setLike] = useState(allfact.votesInteresting);
+  const [dislike, setDislike] = useState(allfact.votesFalse);
+
+  // Handle the like button click
+  const handleLike = async () => {
+    const newLikeCount = hasLiked ? like - 1 : like + 1;
+    const newDislikeCount = hasDisliked ? dislike - 1 : dislike;
+
+    // Update local state
+    setLike(newLikeCount);
+    setDislike(newDislikeCount);
+
+    // Update Supabase with the new like and dislike counts
+    const { data, error } = await supabase
+      .from('info')
+      .update({ votesInteresting: newLikeCount, votesFalse: newDislikeCount })
+      .eq('id', allfact.id)
+      .select();
+
+    if (error) {
+      console.error('Error updating votes:', error);
+    } else {
+      console.log('Updated data:', data);
+    }
+
+    // Toggle like status
+    const newLikeStatus = !hasLiked;
+    setHasLiked(newLikeStatus);
+    // Store in localStorage
+    localStorage.setItem(`liked-${allfact.id}`, newLikeStatus.toString());
+
+    // If disliked, remove dislike
+    if (hasDisliked) {
+      setHasDisliked(false);
+      localStorage.setItem(`disliked-${allfact.id}`, 'false');
+    }
+  };
+
+  // Handle the dislike button click
+  const handleDislike = async () => {
+    const newDislikeCount = hasDisliked ? dislike - 1 : dislike + 1;
+    const newLikeCount = hasLiked ? like - 1 : like;
+
+    // Update local state
+    setLike(newLikeCount);
+    setDislike(newDislikeCount);
+
+    // Update Supabase with the new like and dislike counts
+    const { data, error } = await supabase
+      .from('info')
+      .update({ votesInteresting: newLikeCount, votesFalse: newDislikeCount })
+      .eq('id', allfact.id)
+      .select();
+
+    if (error) {
+      console.error('Error updating votes:', error);
+    } else {
+      console.log('Updated data:', data);
+    }
+
+    // Toggle dislike status
+    const newDislikeStatus = !hasDisliked;
+    setHasDisliked(newDislikeStatus);
+    // Store in localStorage
+    localStorage.setItem(`disliked-${allfact.id}`, newDislikeStatus.toString());
+
+    // If liked, remove like
+    if (hasLiked) {
+      setHasLiked(false);
+      localStorage.setItem(`liked-${allfact.id}`, 'false');
+    }
+  };
   return (
-    <ul >
-      <li key={allfact.id} className="fact">
+    <ul>
+    
+
+     <li key={allfact.id} className="fact">
         <p>
           {allfact.text}
           <a className="link" href={allfact.source} rel="noreferrer" target="_blank">
@@ -235,21 +339,23 @@ function Factlist({ allfact }) {
         </p>
         <span
           style={{
-            backgroundColor: CATEGORIES.find(
-              (cat) => cat.name === allfact.category
-            ).color,
+            backgroundColor: CATEGORIES.find((cat) => cat.name === allfact.category).color,
           }}
         >
           {allfact.category}
         </span>
         <div className="vote">
-          <button className="vote-button">👍 {allfact.votesIntresting}</button>
-          <button className="vote-button">🤯{allfact.voteMindBlowing}</button>
-          <button className="vote-button">⛔️{allfact.votesFalse}</button>
+          <button className="vote-button" onClick={handleLike}>
+            {hasLiked ? '⬆️' : '👍'} {nm==="aj"?like:""}
+          </button>
+          <button className="vote-button" onClick={handleDislike}>
+            {hasDisliked ? '⬇️' : '👎'} {nm==="aj"?dislike:""}
+          </button>
         </div>
       </li>
     </ul>
   );
+
 }
 
 /********************************to check the link***************************/
