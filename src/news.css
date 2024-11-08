@@ -99,8 +99,9 @@ body {
   margin-bottom: 10px;
 }
 
-.form input, .form select, .form select option {
+.form input, .form select, .form select option ,.form textarea {
   min-width: 100px;
+  max-width: 90%;
   outline:none;
   border: 2px dotted black ;
   padding: 10px;

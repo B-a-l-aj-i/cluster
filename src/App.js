@@ -108,7 +108,7 @@ function App() {
   }, []);
 
     function getName(name){
-      // console.log(name);
+      console.log(name);
       setuserName(name);
     }
 
@@ -173,7 +173,7 @@ export default App;
 
 /********************************forms***************************/
 
-function Factform({ setallfacts, setShowForm, userName={userName} }) {
+function Factform({ setallfacts, setShowForm, userName }) {
   const [text, setText] = useState("");
   const [source, setSource] = useState("");
   const [cate, setCate] = useState("");
@@ -199,7 +199,7 @@ function Factform({ setallfacts, setShowForm, userName={userName} }) {
         .from("info")
         .insert([{text,source, category:cate, userName:userName}])
         .select("*");
-        console.log(error);
+        console.log(userName);
       if (newFact && newFact.length > 0) {
         setallfacts((facts) => [{ id: newFact[0].id, ...newFact[0] },...facts]);
       }
@@ -214,16 +214,21 @@ function Factform({ setallfacts, setShowForm, userName={userName} }) {
 
   return (
     <form className="form " onSubmit={handleSubmit}>
-      <input
+      {/* <input name="1"
         placeholder="Share a fact with words..."
         value={text}
-        onChange={(e) =>{
-          // console.log(e.target.value);
-          setText(e.target.value);
-        }}
-      />
+        onChange={(e) =>{setText(e.target.value)}}
+      /> */}
+
+      <textarea
+      placeholder="Share a fact with words..."
+        value={text}
+        onChange={(e) =>{setText(e.target.value)}}
+      >
+
+      </textarea>
       <span>Char Limit :{200 - textLength}</span>
-      <input
+      <input name="2"
         placeholder="Trust worthy source...."
         value={source}
         onChange={(e) => setSource(e.target.value)}
