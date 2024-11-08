@@ -93,6 +93,10 @@ body {
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
+  align-items: center;
+  max-width: fit-content;
+  margin: auto auto;
+  margin-bottom: 10px;
 }
 
 .form input, .form select, .form select option {
@@ -190,6 +194,12 @@ header {
   transform: scale(1.05);
   transition: 0.3s;
 }
+
+.btn-done{
+  background-image: linear-gradient(240deg, #db2777,#f97316,#eab308);
+  font-size: 1rem;
+  max-width: 100px;
+}
 .partition {
   display: grid;
   grid-template-columns:250px 1fr;
@@ -280,20 +290,18 @@ header {
   }
 }
 .ham{
-  border: 1px solid black;
   cursor: pointer;
   background:transparent;
-  max-width: 65px;
   display:none;
-  margin-bottom: 0;
-  padding: 2%;
 }
 
 .logopng{
   margin-top: 10px;
 }
 @media (max-width:900px) {
-  
+  .btn-large{
+    font-size: 1.5rem;
+  }
   .partition {
     display: grid;
     grid-template-columns: 1fr;
@@ -303,11 +311,35 @@ header {
     margin-right: 0;
     display: inline;
   }
+
+  .side-buttons{
+    animation: sani 3s ease-in-out;
+    transform: translatey(0px);
+    z-index: 0;
+  }
+
+  @keyframes sani {
+    from{
+      opacity: 0.01;
+      transform: translatey(-140px);
+    }
+    to{
+
+      opacity:1 ;
+      transform: translatey(0px);
+    }
+  }
 }
 
 @media (max-width:600px) {
+
+  body{
+    padding: 4%;
+  }
   .form{
+    max-width: 100%;
     flex-direction: column;
+    align-items: normal;
   }
   .h2{
     font-size: 27px;
@@ -317,16 +349,21 @@ header {
     flex-direction: row;
   }
   .btn-large{
-    font-size: 15px;
-    width:70px;
+    font-size: 1rem;
   }
-  body{
-    padding:4%;
+  header{
+    gap:4%;
+    justify-content:space-evenly;
   }
+  .btn-large{
+    width: 90px;
+  }
+
   .logopng{
     width: 30px;
     height: 30px;
   }
+  
 }
 
 

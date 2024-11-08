@@ -10,6 +10,10 @@ import dislike1 from "./dislikebuttons/dislike1.png"
 import dislike2 from "./dislikebuttons/dislike2.png"
 
 
+import menu from "./hamBurgerButtons/menu.png"
+import cross from "./hamBurgerButtons/cross.png"
+
+
 const CATEGORIES = [
   { name: "technology", color: "#3b82f6" },
   { name: "science", color: "#16a34a" },
@@ -114,8 +118,9 @@ function App() {
 
   return (
     <>
-      {(!userName && <Login gN={getName} />) 
-      ||
+      {
+        (!userName && <Login gN={getName} />) 
+      &&
       ( <>
       <header>
         <div className="logo">
@@ -136,7 +141,12 @@ function App() {
         >
           {showForm ? "close" : "POST"}
         </button>
-        <button onClick={toggleMenu} className="ham">🪬</button>
+        <span onClick={toggleMenu} className="ham">
+        {
+          !isOpen && <img src={menu} width={40} height={40}/> || 
+          <img src={cross} width={30} height={30}/>
+        } 
+        </span>
 
       </header>
       {showForm ? (
@@ -212,7 +222,7 @@ function Factform({ setallfacts, setShowForm }) {
           setText(e.target.value);
         }}
       />
-      <span>{200 - textLength}</span>
+      <span>Char Limit :{200 - textLength}</span>
       <input
         placeholder="Trust worthy source...."
         value={source}
@@ -230,7 +240,7 @@ function Factform({ setallfacts, setShowForm }) {
           <option>{cat.name}</option>
         ))}
       </select>
-      <button className="btn-large">DONE</button>
+      <button className="btn btn-large btn-done">DONE</button>
     </form>
   );
 }
