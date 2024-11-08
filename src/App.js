@@ -135,7 +135,7 @@ function App() {
         </div>
            
         <button
-          className="btn btn-large btn-open"
+          className="btn-large btn-open"
           id="open"
           onClick={() => setShowForm((show) => !show)}
         >
