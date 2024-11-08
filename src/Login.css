@@ -36,10 +36,9 @@
     border-bottom: 2.4px solid blue;
   }
   
-  .form-container input[type="text"]:focus {
-    /* box-shadow: 0 0 0 3px #007bff; */
-
-  }
+  /* .form-container input[type="text"]:focus {
+    box-shadow:inset 0 0 0 5px #747474;
+  } */
   
   /* Submit Button Styling */
   .form-container button {

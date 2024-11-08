@@ -143,8 +143,8 @@ function App() {
         </button>
         <span onClick={toggleMenu} className="ham">
         {
-          !isOpen && <img src={menu} width={40} height={40}/> || 
-          <img src={cross} width={30} height={30}/>
+         ( !isOpen && <img src={menu} alt="menu" width={40} height={40}/>) || 
+          <img src={cross} width={30} alt="cross" height={30}/>
         } 
         </span>
 
