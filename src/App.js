@@ -119,8 +119,8 @@ function App() {
   return (
     <>
       {
-        (!userName && <Login gN={getName} />) 
-      &&
+      (!userName && <Login gN={getName} />) 
+      || //use AND TO REMOVE LOGIN  PAGE
       ( <>
       <header>
         <div className="logo">
