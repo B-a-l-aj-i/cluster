@@ -150,7 +150,7 @@ function App() {
 
       </header>
       {showForm ? (
-        <Factform setShowForm={setShowForm} setallfacts={setallfacts} />
+        <Factform userName={userName} setShowForm={setShowForm} setallfacts={setallfacts} />
       ) : null}
       <div className="partition">
        {
@@ -173,7 +173,7 @@ export default App;
 
 /********************************forms***************************/
 
-function Factform({ setallfacts, setShowForm }) {
+function Factform({ setallfacts, setShowForm, userName={userName} }) {
   const [text, setText] = useState("");
   const [source, setSource] = useState("");
   const [cate, setCate] = useState("");
@@ -197,7 +197,7 @@ function Factform({ setallfacts, setShowForm }) {
 
       const { data: newFact, error } = await supabase
         .from("info")
-        .insert([{text,source, category:cate }])
+        .insert([{text,source, category:cate, userName:userName}])
         .select("*");
         console.log(error);
       if (newFact && newFact.length > 0) {
