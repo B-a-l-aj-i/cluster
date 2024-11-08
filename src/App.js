@@ -199,7 +199,8 @@ function Factform({ setallfacts, setShowForm, userName }) {
         .from("info")
         .insert([{text,source, category:cate, userName:userName}])
         .select("*");
-        console.log(userName);
+        console.log(error);
+        // console.log(userName);
       if (newFact && newFact.length > 0) {
         setallfacts((facts) => [{ id: newFact[0].id, ...newFact[0] },...facts]);
       }
@@ -257,8 +258,8 @@ function Fact({ allfacts ,userName}) {
   return (
     <section>
      <center> 
-      <span>{userName &&  <h1>Hello, {userName}!</h1>} </span>
-      <p className="count">There are {allfacts.length} facts here,add your own</p> 
+      {/* <span>{userName &&  <h1>Hello, {userName}!</h1>} </span> */}
+      <p className="count"> Hey,{userName}!  There are {allfacts.length} facts here,add your own</p> 
     </center>
       <br></br>
       <ul key={allfacts.id} className="factslist">
