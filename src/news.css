@@ -18,6 +18,7 @@ span {
   padding-left: 7px;
   padding-right: 7px;
   color: #000;
+  margin-right: auto;
 }
 
 .container, #root {
@@ -26,7 +27,7 @@ span {
 }
 
 .fact {
-  background-color: #d6ddf0;
+  background-color: #d9e3ff;
   font-family: "sono", sans-serif;
   line-height: 1.4;
   padding: 16px 24px;
@@ -43,14 +44,15 @@ span {
 }
 
 .vote {
-  display: flex;
+  /* display: flex; */
   flex-shrink: 0;
-  gap: 5px;
+  /* gap: 5px; */
   margin-left: auto;
+  /* margin-right: auto; */
 }
 
 .vote-button {
-  background-color: #B0B7CC;
+  background-color:transparent;
   border: none;
   border-radius: 15px;
   color: #3B3B3B;
@@ -70,6 +72,9 @@ span {
   font-family: "coiny", sans-serif;
   color: #4B4B4B;
   margin: 0px;
+  display: flex;
+  align-items: center;
+  gap:5px;
 }
 
 body {
@@ -103,7 +108,7 @@ body {
 }
 
 header {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -155,7 +160,7 @@ header {
 .btn-large {
   background-color: #F5F7FA; 
   color:white;
-  font-size: 25px;
+  font-size: 2rem;
   font-family:"coiny";
   text-align: center;
   border-radius: 28px;
@@ -164,6 +169,7 @@ header {
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
+  padding: 0.5% 0%;
 }
 
 .btn-large:hover {
@@ -274,11 +280,18 @@ header {
   }
 }
 .ham{
+  border: 1px solid black;
+  cursor: pointer;
+  background:transparent;
   max-width: 65px;
   display:none;
   margin-bottom: 0;
+  padding: 2%;
 }
 
+.logopng{
+  margin-top: 10px;
+}
 @media (max-width:900px) {
   
   .partition {

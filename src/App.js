@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import supabase from "./supabase";
 import "./news.css";
+import Login from "./Login";
+
+
+import like1  from  "./likebuttons/like1.png" 
+import like2  from  "./likebuttons/like2.png" 
+import dislike1 from "./dislikebuttons/dislike1.png"
+import dislike2 from "./dislikebuttons/dislike2.png"
+
 
 const CATEGORIES = [
   { name: "technology", color: "#3b82f6" },
@@ -60,6 +68,8 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);  
 
+  const [userName,setuserName]=useState("")
+
 
   const updateScreenSize = () => {
     setIsDesktop(window.innerWidth >= 900);
@@ -81,14 +91,22 @@ function App() {
         .from("info")
         .select("*")
         // .eq("category", cate);
+     try{
       console.log(community);
-      console.log(error);
+     } catch(e){
+
+       console.log(error);
+     }
       setallfacts(community);
       // console.log(error);
     }
     getfacts();
   }, []);
 
+    function getName(name){
+      // console.log(name);
+      setuserName(name);
+    }
 
   const filteredFacts = selectedCategory
     ? allfacts.filter((fact) => fact.category === selectedCategory)
@@ -96,15 +114,18 @@ function App() {
 
   return (
     <>
+      {(!userName && <Login gN={getName} />) 
+      ||
+      ( <>
       <header>
         <div className="logo">
           
           <p className="h2"> 
           <a href="https://balajiscluster.netlify.app" target="_self">
-          <img  style={{cursor:"pointer"}} className="logopng"
-             alt="clusterPng" 
-           src="./logo.png" height="40" width="40" />
-          </a> CLUSTER
+          <img  style={{cursor:"pointer"}} className="logopng" alt="clusterPng" src="./logo.png" height="40" width="40" />
+          </a> 
+          
+          CLUSTER
            </p>
         </div>
            
@@ -115,7 +136,7 @@ function App() {
         >
           {showForm ? "close" : "POST"}
         </button>
-        <button onClick={toggleMenu} className="ham btn btn-all">🪬</button>
+        <button onClick={toggleMenu} className="ham">🪬</button>
 
       </header>
       {showForm ? (
@@ -127,9 +148,15 @@ function App() {
        }
         {/* //allfacts is array of objecs */}
         {isDesktop  && <Category setSelectedCategory={setSelectedCategory} />}
-        <Fact allfacts={filteredFacts} />
+        <Fact userName={userName} allfacts={filteredFacts} />
       </div>
     </>
+      )
+      
+      }
+
+    </>
+   
   );
 }
 export default App;
@@ -203,35 +230,25 @@ function Factform({ setallfacts, setShowForm }) {
           <option>{cat.name}</option>
         ))}
       </select>
-      <button className="btn btn-large">DONE</button>
+      <button className="btn-large">DONE</button>
     </form>
   );
 }
 
 /********************************facts***************************/
-let nm=""
-function Fact({ allfacts }) {
-  const [name, setName] = useState(""); // State to store user input
+function Fact({ allfacts ,userName}) {
+  // setName(nm);
 
-  const handlePrompt = () => {
-    const userName = window.prompt("Enter your name");
-    if (userName) {
-      setName(userName); // Store the name in state
-    }
-  };
-  nm=name;
   return (
     <section>
-     <center> <p className="count">There are {allfacts.length} facts here,add your own
-     {/* <div> */}
-      <button style={{fontSize:"1rem",padding:"0.5rem"}} className="btn-large" onClick={handlePrompt}>Click!</button>
-      {name &&  <h1>Hello, {name}!</h1>} {/* Display the entered name */}
-    {/* </div> */}
-    </p> </center>
+     <center> 
+      <span>{userName &&  <h1>Hello, {userName}!</h1>} </span>
+      <p className="count">There are {allfacts.length} facts here,add your own</p> 
+    </center>
       <br></br>
       <ul key={allfacts.id} className="factslist">
         {allfacts.map((allfact) => (
-          <Factlist key={allfact.id} allfact={allfact}/>
+          <Factlist userName={userName} key={allfact.id} allfact={allfact}/>
         ))}
       </ul>
       
@@ -239,7 +256,7 @@ function Fact({ allfacts }) {
   );
 }
 
-function Factlist({ allfact }) {
+function Factlist({ allfact ,userName}) {
   // Get :initial like and dislike statuses from localStorage (if available)
 
   
@@ -346,10 +363,25 @@ function Factlist({ allfact }) {
         </span>
         <div className="vote">
           <button className="vote-button" onClick={handleLike}>
-            {hasLiked ? '⬆️' : '👍'} {nm==="aj"?like:""}
+          
+            {
+             hasLiked ?
+             <img src={like2} alt="like" height={30} width={30}/>
+              :
+             <img src={like1} alt="like" height={30} width={30}/> 
+             } 
+
+             {userName==="aj"?like:""}
           </button>
           <button className="vote-button" onClick={handleDislike}>
-            {hasDisliked ? '⬇️' : '👎'} {nm==="aj"?dislike:""}
+          {
+            hasDisliked ?
+             <img src={dislike2} alt="like" height={25} width={25}/>
+              :
+             <img src={dislike1} alt="like" height={25} width={25}/> 
+             }             
+            
+            {userName==="aj"?dislike:""}
           </button>
         </div>
       </li>
