@@ -2,6 +2,8 @@
 import { useState } from "react";
 
 import "./Login.css";
+
+import supabase from "./supabase";
 function Login({gN}){
 
     
@@ -14,12 +16,24 @@ function Login({gN}){
         setName(e.target.value)
         // setName("")
     }
+
+   async function insert(name){
+      
+        const { data, error } = await supabase
+        .from('loginUser')
+        .insert({ name:name })
+        .select()
+
+        console.log(data,error);
+        
+    }
     
     function handleSubmit(e){
         // console.log(e);
         if(reg.test(name)){
             // console.log(name);
             gN(name)
+            insert(name)
         }   
 
     }
@@ -30,6 +44,7 @@ function Login({gN}){
        if(key==="Enter" && reg.test(name)){
         // console.log(name);
         gN(name)
+        insert(name)
        }
     }
 
