@@ -24,7 +24,7 @@ const CATEGORIES = [
   { name: "history", color: "#f97316" },
   { name: "culture", color: "#8b5cf6" },
   { name: "entertainment", color: "#db2777" },
-  // { name: "others", color: "black" },
+  // { name: "default", color: "black" },
 ];
 
 // const initialFacts = [
@@ -181,8 +181,8 @@ function Factform({ setallfacts, setShowForm, userName }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    if (text && isValidHttpUrl(source) && cate && textLength <= 200) {
+    // && isValidHttpUrl(source)
+    if (text  && cate && textLength <= 200) {
       console.log("done clicked....");
       // const newFacts = {
       //   id: Math.round(Math.random() * 1000),
@@ -372,7 +372,7 @@ function Factlist({ allfact ,userName}) {
         </p>
         <span
           style={{
-            backgroundColor: CATEGORIES.find((cat) => cat.name === allfact.category).color,
+            backgroundColor: CATEGORIES.find((cat) => cat.name===allfact.category).color,
           }}
         >
           {allfact.category}
