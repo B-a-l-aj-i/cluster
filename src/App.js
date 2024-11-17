@@ -418,7 +418,7 @@ function isValidHttpUrl(string) {
   // console.log(url.protocol);
   
 
-  return url.protocol === "http:" || true;
+  return  true;
 }
 /********************************sidebuttons***************************/
 
