@@ -27,7 +27,7 @@ span {
 }
 
 .fact {
-  background-color: hsl(224, 100%, 93%);
+  background-color: rgb(219, 229, 255);
   font-family: "sono", sans-serif;
   line-height: 1.4;
   padding: 16px 24px;
