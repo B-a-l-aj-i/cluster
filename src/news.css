@@ -353,6 +353,7 @@ header {
     font-size: 27px;
   }
   .fact{
+  background-color: rgb(228, 236, 255);
     flex-wrap:wrap;
     flex-direction: row;
   }
