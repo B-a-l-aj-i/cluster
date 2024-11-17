@@ -303,6 +303,7 @@ header {
 @media (max-width:900px) {
   .btn-large{
     font-size: 1.5rem;
+    padding-bottom: 0.4rem;
   }
   .partition {
     display: flex;
