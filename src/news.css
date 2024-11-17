@@ -305,30 +305,35 @@ header {
     font-size: 1.5rem;
   }
   .partition {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* grid-template-columns: 1fr; */
+    gap: 10px;
   }
   .ham{
     margin-right: 0;
     display: inline;
   }
 
+  .btn{
+    width: 100px;
+    font-size: 11px;
+  }
   .side-buttons{
-    animation: sani 3s ease-in-out;
-    transform: translatey(0px);
+    animation: sani 0.8s ease-in-out;
+    transform: translatex(0px);
     z-index: 0;
   }
 
   @keyframes sani {
     from{
       opacity: 0.01;
-      transform: translatey(-140px);
+      transform: translatex(-140px);
     }
     to{
 
       opacity:1 ;
-      transform: translatey(0px);
+      transform: translatex(0px);
     }
   }
 }

@@ -230,7 +230,7 @@ function Factform({ setallfacts, setShowForm, userName }) {
       </textarea>
       <span>Char Limit :{200 - textLength}</span>
       <input name="2"
-        placeholder="Trust worthy source...."
+        placeholder="source.... (Optional)"
         value={source}
         onChange={(e) => setSource(e.target.value)}
       />
@@ -416,8 +416,9 @@ function isValidHttpUrl(string) {
     return false;
   }
   // console.log(url.protocol);
+  
 
-  return url.protocol === "http:" || url.protocol === "https:";
+  return url.protocol === "http:" || true;
 }
 /********************************sidebuttons***************************/
 
