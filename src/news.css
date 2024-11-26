@@ -375,3 +375,7 @@ header {
 
 
 
+html, body {
+  color-scheme: light; /* Ensure the browser uses the light color scheme */
+  image-rendering: auto; /* Prevent unwanted optimizations for color */
+}
