@@ -353,7 +353,7 @@ header {
     font-size: 27px;
   }
   .fact{
-    background-color: #e4ecff;
+    background-color:lightblue;
     flex-wrap:wrap;
     flex-direction: row;
   }
