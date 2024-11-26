@@ -353,7 +353,7 @@ header {
     font-size: 27px;
   }
   .fact{
-    background-color:white;
+    background-color: #e4ecff;
     flex-wrap:wrap;
     flex-direction: row;
   }
@@ -371,11 +371,4 @@ header {
     height: 30px;
   }
   
-}
-
-
-
-html, body {
-  color-scheme: light; /* Ensure the browser uses the light color scheme */
-  image-rendering: auto; /* Prevent unwanted optimizations for color */
 }
