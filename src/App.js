@@ -382,9 +382,9 @@ function Factlist({ allfact ,userName}) {
           
             {
              hasLiked ?
-             <img src={like2} alt="like" height={30} width={30}/>
+             <img src={like2} alt="like" height={25} width={25}/>
               :
-             <img src={like1} alt="like" height={30} width={30}/> 
+             <img src={like1} alt="like" height={25} width={25}/> 
              } 
 
              {userName==="aj"?like:""}
@@ -407,19 +407,19 @@ function Factlist({ allfact ,userName}) {
 }
 
 /********************************to check the link***************************/
-function isValidHttpUrl(string) {
-  let url;
+// function isValidHttpUrl(string) {
+//   let url;
 
-  try {
-    url = new URL(string);
-  } catch (_) {
-    return false;
-  }
-  // console.log(url.protocol);
+//   try {
+//     url = new URL(string);
+//   } catch (_) {
+//     return false;
+//   }
+//   // console.log(url.protocol);
   
 
-  return  true;
-}
+//   return  true;
+// }
 /********************************sidebuttons***************************/
 
 
