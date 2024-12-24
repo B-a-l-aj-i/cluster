@@ -139,7 +139,7 @@ function App() {
           id="open"
           onClick={() => setShowForm((show) => !show)}
         >
-          {showForm ? "close" : "POST"}
+          {showForm ? "close" : "post"}
         </button>
         <span onClick={toggleMenu} className="ham">
         {
